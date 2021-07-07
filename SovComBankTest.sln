@@ -5,6 +5,14 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.ApiWebApp", "SovComBankTest.ApiWebApp\SovComBankTest.ApiWebApp.csproj", "{D0CCCBC2-AADD-4983-B46C-B5F7B5AFF89D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Services", "SovComBankTest.Services\SovComBankTest.Services.csproj", "{656FD8AD-02BE-41FC-BDA0-7F0B0ADFFEB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Services.Abstractions", "SovComBankTest.Services.Abstractions\SovComBankTest.Services.Abstractions.csproj", "{9A41A020-1203-4BAC-9453-E9ECCA253F67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Services.Models", "SovComBankTest.Services.Models\SovComBankTest.Services.Models.csproj", "{F3625AA7-4B90-4B1E-8FDB-D9B2532D3726}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Services.DependencyInjection", "SovComBankTest.Services.DependencyInjection\SovComBankTest.Services.DependencyInjection.csproj", "{FF410260-A616-47B0-B5CC-DFE66F510644}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,22 @@ Global
 		{D0CCCBC2-AADD-4983-B46C-B5F7B5AFF89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0CCCBC2-AADD-4983-B46C-B5F7B5AFF89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0CCCBC2-AADD-4983-B46C-B5F7B5AFF89D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{656FD8AD-02BE-41FC-BDA0-7F0B0ADFFEB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{656FD8AD-02BE-41FC-BDA0-7F0B0ADFFEB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{656FD8AD-02BE-41FC-BDA0-7F0B0ADFFEB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{656FD8AD-02BE-41FC-BDA0-7F0B0ADFFEB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A41A020-1203-4BAC-9453-E9ECCA253F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A41A020-1203-4BAC-9453-E9ECCA253F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A41A020-1203-4BAC-9453-E9ECCA253F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A41A020-1203-4BAC-9453-E9ECCA253F67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3625AA7-4B90-4B1E-8FDB-D9B2532D3726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3625AA7-4B90-4B1E-8FDB-D9B2532D3726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3625AA7-4B90-4B1E-8FDB-D9B2532D3726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3625AA7-4B90-4B1E-8FDB-D9B2532D3726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF410260-A616-47B0-B5CC-DFE66F510644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF410260-A616-47B0-B5CC-DFE66F510644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF410260-A616-47B0-B5CC-DFE66F510644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF410260-A616-47B0-B5CC-DFE66F510644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

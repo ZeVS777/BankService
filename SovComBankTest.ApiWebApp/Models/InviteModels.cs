@@ -1,9 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text.RegularExpressions;
-using SovComBankTest.ApiWebApp.Utils;
+﻿using System.ComponentModel.DataAnnotations;
+using SovComBankTest.Services.Abstractions;
 
 namespace SovComBankTest.ApiWebApp.Models
 {
@@ -37,20 +33,17 @@ namespace SovComBankTest.ApiWebApp.Models
         public override bool IsValid(object? value)
         {
             if (value is not InviteMessage inviteMessage)
-            {
-                ErrorMessage = "Unknown body format.";
                 return false;
-            }
 
             var phones = inviteMessage.Phones;
 
-            if (!Utils.Validator.TryValidatePhones(phones, out var error))
+            if (!ISmsService.TryValidatePhones(phones, out var error))
             {
                 ErrorMessage = error;
                 return false;
             }
 
-            if (!Utils.Validator.TryValidateMessage(inviteMessage.Message, out error))
+            if (!ISmsService.TryValidateMessage(inviteMessage.Message, out error))
             {
                 ErrorMessage = error;
                 return false;

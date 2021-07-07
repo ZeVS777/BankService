@@ -15,4 +15,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SovComBankTest.Services.DependencyInjection\SovComBankTest.Services.DependencyInjection.csproj" />
+  </ItemGroup>
+
 </Project>

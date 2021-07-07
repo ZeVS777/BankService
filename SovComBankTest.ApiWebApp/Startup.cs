@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using SovComBankTest.ApiWebApp.Models;
+using SovComBankTest.Services.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SovComBankTest.ApiWebApp
@@ -22,6 +23,7 @@ namespace SovComBankTest.ApiWebApp
 
         public void ConfigureServices(IServiceCollection services) =>
             services
+                .AddSmsService()
                 .AddVersionedApiExplorer(ConfigureApiExplorerOptions)
                 .AddApiVersioning(ConfigureApiVersionOptions)
                 .AddSwaggerGen(ConfigureSwaggerGenOptions)
