@@ -15,6 +15,7 @@ namespace SovComBankTest.Entities
     public sealed record InviteMessagesLogEntity(DateTimeOffset SendDateTime, string Phone, int InviteMessageId, [property: Key] int Id = 0)
     {
         public override int GetHashCode() => Id;
+
         public bool Equals(InviteMessagesLogEntity? other) => other != null && EqualityContract == other.EqualityContract && Id == other.Id;
     }
 }
