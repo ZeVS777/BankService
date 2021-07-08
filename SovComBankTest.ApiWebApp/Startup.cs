@@ -23,7 +23,7 @@ namespace SovComBankTest.ApiWebApp
 
         public void ConfigureServices(IServiceCollection services) =>
             services
-                .AddSmsService("Data Source=db;Initial Catalog=master;User Id=sa;Password=Password123;") //TODO: Должен быть не sa пользователь в продакшене, да и вынесены пароли в секретную конфигурацию
+                .AddSmsService(options => Configuration.GetSection("SmsService").Bind(options))
                 .AddVersionedApiExplorer(ConfigureApiExplorerOptions)
                 .AddApiVersioning(ConfigureApiVersionOptions)
                 .AddSwaggerGen(ConfigureSwaggerGenOptions)

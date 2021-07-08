@@ -10,4 +10,9 @@ namespace SovComBankTest.Repositories.Abstractions
         Task<int> AddMessageAsync(InviteMessageEntity inviteMessage);
         Task<int> AddMessageLogEntryAsync(InviteMessagesLogEntity[] log);
     }
+
+    public class InviteMessagesRepositoryOptions
+    {
+        public string? ConnectionString { get; set; }
+    }
 }

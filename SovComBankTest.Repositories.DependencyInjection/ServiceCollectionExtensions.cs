@@ -1,25 +1,31 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using Dapper;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using SovComBankTest.Repositories.Abstractions;
 
 namespace SovComBankTest.Repositories.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddSmsRepositories(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddSmsRepositories(this IServiceCollection services, Action<InviteMessagesRepositoryOptions> options)
         {
-            InitialDbMigration(connectionString);
-
-            return services
-                .AddScoped<IDbConnection, SqlConnection>(_ => new SqlConnection(connectionString))
+            services
+                .Configure(options)
+                .AddScoped<IDbConnection, SqlConnection>(provider => new SqlConnection(provider.GetRequiredService<IOptions<InviteMessagesRepositoryOptions>>().Value.ConnectionString))
                 .AddScoped<IInviteMessagesRepository, InviteMessagesRepository>();
+
+			InitialDbMigration(services);
+
+            return services;
         }
 
-        private static void InitialDbMigration(string connectionString)
+        private static void InitialDbMigration(IServiceCollection services)
         {
-            using var connection = new SqlConnection(connectionString);
+            using var sp = services.BuildServiceProvider();
+			using var connection = sp.GetRequiredService<IDbConnection>();
 
             connection.Execute(@"IF NOT EXISTS(SELECT * FROM sys.tables WHERE name = 'InviteMessage')
 BEGIN
