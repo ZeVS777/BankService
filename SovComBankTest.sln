@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Utils", "Sov
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{59B3F35C-2317-466A-A968-F839EB816A2B}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B4BCF188-0916-4467-9E69-275AEA8FDA13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{667AA9AC-0DEB-49AC-9F70-69F55019B6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{667AA9AC-0DEB-49AC-9F70-69F55019B6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{667AA9AC-0DEB-49AC-9F70-69F55019B6E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4BCF188-0916-4467-9E69-275AEA8FDA13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4BCF188-0916-4467-9E69-275AEA8FDA13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4BCF188-0916-4467-9E69-275AEA8FDA13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4BCF188-0916-4467-9E69-275AEA8FDA13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

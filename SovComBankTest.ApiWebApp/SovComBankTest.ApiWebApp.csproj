@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <DocumentationFile>wwwroot\api.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>

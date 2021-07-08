@@ -18,7 +18,7 @@ namespace SovComBankTest.Repositories
         {
             var sql = string.Concat(
                 "select count(log.Id) from InviteMessagesLog log ",
-                $"join InviteMessage m on m.{nameof(InviteMessageEntity.Id)} = log.{nameof(InviteMessagesLogEntity.InviteMessageId)}",
+                $"join InviteMessage m on m.{nameof(InviteMessageEntity.Id)} = log.{nameof(InviteMessagesLogEntity.InviteMessageId)} ",
                 $"where m.{nameof(InviteMessageEntity.ApiId)} = @{nameof(apiId)} and log.{nameof(InviteMessagesLogEntity.SendDateTime)} >= @{nameof(date)}"
             );
 
