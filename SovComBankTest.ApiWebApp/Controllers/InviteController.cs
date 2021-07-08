@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SovComBankTest.ApiWebApp.Models;
@@ -40,13 +41,13 @@ namespace SovComBankTest.ApiWebApp.Controllers
         /// <response code="401">Не предоставлен ApiId.</response>
         /// <response code="403">Предоставленному ApiId не разрешено выполнить данный запрос.</response>
         /// <response code="429">Слишком много запросов.</response>
-        [Produces(typeof(ApiResult))]
+        [Produces(typeof(ApiResult<SendResult>))]
         [ProducesResponseType(400, Type = typeof(ApiResult<IEnumerable<ValidationError>>))]
         [ProducesResponseType(401, Type = typeof(ApiResult))]
         [ProducesResponseType(403, Type = typeof(ApiResult))]
         [ProducesResponseType(429, Type = typeof(ApiResult))]
         [HttpPost("send")]
-        public ActionResult Send(
+        public async Task<ActionResult> Send(
             [FromServices] ISmsService smsService,
             [Required(ErrorMessage = "Unknown Format.")][InviteMessageValidation] InviteMessage message)
         {
@@ -55,15 +56,24 @@ namespace SovComBankTest.ApiWebApp.Controllers
             Debug.Assert(message.Phones != null);
             Debug.Assert(message.Message != null);
 
-            var sendStatus = smsService.Send(new InviteMessageModel(message.Phones, message.Message, message.ApiId.Value));
+            var (status, remains) = await smsService.SendAsync(new InviteMessageModel(message.Phones, message.Message, message.ApiId.Value));
 
-            return sendStatus switch
+            return status switch
             {
-                SendStatus.Ok => Ok(),
-                SendStatus.TooMany => StatusCode(StatusCodes.Status429TooManyRequests),
+                SendStatus.Ok => Ok(new ApiResult<SendResultModel>(new SendResultModel{Remains = remains})),
+                SendStatus.TooMany when remains == 0 => StatusCode(StatusCodes.Status429TooManyRequests),
+                SendStatus.TooMany => NotEnoughRemains(remains),
                 SendStatus.Forbidden => StatusCode(StatusCodes.Status403Forbidden),
                 _ => throw new ArgumentOutOfRangeException()
             };
+        }
+
+        private ActionResult NotEnoughRemains(int remains)
+        {
+            ModelState.AddModelError("message", PhoneValidationErrorMessages.TooMuchPhoneNumbersPerDay);
+            ModelState.AddModelError("message", $"You have {remains} messages remains");
+            return BadRequest(new ApiResult<IEnumerable<ValidationError>>(
+                ValidationError.GetValidationErrors(ControllerContext), "Bad Request"));
         }
     }
 }

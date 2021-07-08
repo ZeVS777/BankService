@@ -3,15 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.ApiWebApp", "SovComBankTest.ApiWebApp\SovComBankTest.ApiWebApp.csproj", "{D0CCCBC2-AADD-4983-B46C-B5F7B5AFF89D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SovComBankTest.ApiWebApp", "SovComBankTest.ApiWebApp\SovComBankTest.ApiWebApp.csproj", "{D0CCCBC2-AADD-4983-B46C-B5F7B5AFF89D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Services", "SovComBankTest.Services\SovComBankTest.Services.csproj", "{656FD8AD-02BE-41FC-BDA0-7F0B0ADFFEB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SovComBankTest.Services", "SovComBankTest.Services\SovComBankTest.Services.csproj", "{656FD8AD-02BE-41FC-BDA0-7F0B0ADFFEB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Services.Abstractions", "SovComBankTest.Services.Abstractions\SovComBankTest.Services.Abstractions.csproj", "{9A41A020-1203-4BAC-9453-E9ECCA253F67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SovComBankTest.Services.Abstractions", "SovComBankTest.Services.Abstractions\SovComBankTest.Services.Abstractions.csproj", "{9A41A020-1203-4BAC-9453-E9ECCA253F67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Services.Models", "SovComBankTest.Services.Models\SovComBankTest.Services.Models.csproj", "{F3625AA7-4B90-4B1E-8FDB-D9B2532D3726}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SovComBankTest.Services.Models", "SovComBankTest.Services.Models\SovComBankTest.Services.Models.csproj", "{F3625AA7-4B90-4B1E-8FDB-D9B2532D3726}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Services.DependencyInjection", "SovComBankTest.Services.DependencyInjection\SovComBankTest.Services.DependencyInjection.csproj", "{FF410260-A616-47B0-B5CC-DFE66F510644}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SovComBankTest.Services.DependencyInjection", "SovComBankTest.Services.DependencyInjection\SovComBankTest.Services.DependencyInjection.csproj", "{FF410260-A616-47B0-B5CC-DFE66F510644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Repositories", "SovComBankTest.Repositories\SovComBankTest.Repositories.csproj", "{851B8F01-F0F1-4A97-BAA3-CA845DE08410}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Repositories.Abstractions", "SovComBankTest.Repositories.Abstractions\SovComBankTest.Repositories.Abstractions.csproj", "{EDA5A546-3FE0-4F4C-B078-B504B2454006}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Repositories.DependencyInjection", "SovComBankTest.Repositories.DependencyInjection\SovComBankTest.Repositories.DependencyInjection.csproj", "{FB32F031-7EC1-4F53-8C08-7573866C18F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Entities", "SovComBankTest.Entities\SovComBankTest.Entities.csproj", "{84578F76-64B0-4522-95C3-2A1860723B02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{B1F059FC-996D-4936-8F64-A7FAA081F804}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3BE6817B-F777-4649-B509-0AF1540F35F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SovComBankTest.Utils", "SovComBankTest.Utils\SovComBankTest.Utils.csproj", "{667AA9AC-0DEB-49AC-9F70-69F55019B6E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{59B3F35C-2317-466A-A968-F839EB816A2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +55,40 @@ Global
 		{FF410260-A616-47B0-B5CC-DFE66F510644}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF410260-A616-47B0-B5CC-DFE66F510644}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF410260-A616-47B0-B5CC-DFE66F510644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{851B8F01-F0F1-4A97-BAA3-CA845DE08410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{851B8F01-F0F1-4A97-BAA3-CA845DE08410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{851B8F01-F0F1-4A97-BAA3-CA845DE08410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{851B8F01-F0F1-4A97-BAA3-CA845DE08410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDA5A546-3FE0-4F4C-B078-B504B2454006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA5A546-3FE0-4F4C-B078-B504B2454006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDA5A546-3FE0-4F4C-B078-B504B2454006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA5A546-3FE0-4F4C-B078-B504B2454006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB32F031-7EC1-4F53-8C08-7573866C18F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB32F031-7EC1-4F53-8C08-7573866C18F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB32F031-7EC1-4F53-8C08-7573866C18F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB32F031-7EC1-4F53-8C08-7573866C18F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84578F76-64B0-4522-95C3-2A1860723B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84578F76-64B0-4522-95C3-2A1860723B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84578F76-64B0-4522-95C3-2A1860723B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84578F76-64B0-4522-95C3-2A1860723B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{667AA9AC-0DEB-49AC-9F70-69F55019B6E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{667AA9AC-0DEB-49AC-9F70-69F55019B6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{667AA9AC-0DEB-49AC-9F70-69F55019B6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{667AA9AC-0DEB-49AC-9F70-69F55019B6E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{656FD8AD-02BE-41FC-BDA0-7F0B0ADFFEB7} = {3BE6817B-F777-4649-B509-0AF1540F35F5}
+		{9A41A020-1203-4BAC-9453-E9ECCA253F67} = {3BE6817B-F777-4649-B509-0AF1540F35F5}
+		{F3625AA7-4B90-4B1E-8FDB-D9B2532D3726} = {3BE6817B-F777-4649-B509-0AF1540F35F5}
+		{FF410260-A616-47B0-B5CC-DFE66F510644} = {3BE6817B-F777-4649-B509-0AF1540F35F5}
+		{851B8F01-F0F1-4A97-BAA3-CA845DE08410} = {B1F059FC-996D-4936-8F64-A7FAA081F804}
+		{EDA5A546-3FE0-4F4C-B078-B504B2454006} = {B1F059FC-996D-4936-8F64-A7FAA081F804}
+		{FB32F031-7EC1-4F53-8C08-7573866C18F8} = {B1F059FC-996D-4936-8F64-A7FAA081F804}
+		{84578F76-64B0-4522-95C3-2A1860723B02} = {B1F059FC-996D-4936-8F64-A7FAA081F804}
+		{667AA9AC-0DEB-49AC-9F70-69F55019B6E5} = {59B3F35C-2317-466A-A968-F839EB816A2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65864F2D-95B9-4FD7-B6CA-B814B1F8381C}
