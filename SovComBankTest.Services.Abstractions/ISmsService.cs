@@ -14,10 +14,10 @@ namespace SovComBankTest.Services.Abstractions
         public Task<SendResult> SendAsync(InviteMessageModel inviteMessage);
 
         private static readonly Regex SmsLegalCharactersRegex = new(
-            @"^[@£$¥èéùìòÇ\nØø\rÅå\fΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !""#¤%&'()*+,\-.\/0-9:;<=>?¡A-ZÄÖÑÜ§¿a-zäöñüà^{}\[~\]\|€А-Яа-я]*$"
+            @"^[@£$¥èéùìòÇ\nØø\rÅå\fΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !""#¤%&'()*+,\-.\/0-9:;<=>?¡A-ZÄÖÑÜ§¿a-zäöñüà^{}\[~\]\|€А-Яа-яЁё]*$"
             , RegexOptions.Compiled);
 
-        public static bool CheckGsmChars(ReadOnlySpan<char> message) => SmsLegalCharactersRegex.IsMatch(message.ToString());
+        private static bool CheckGsmChars(ReadOnlySpan<char> message) => SmsLegalCharactersRegex.IsMatch(message.ToString());
 
         public static bool TryValidateMessage(ReadOnlySpan<char> message, [NotNullWhen(false)] out string? error)
         {
@@ -39,7 +39,7 @@ namespace SovComBankTest.Services.Abstractions
             foreach (var ch in message)
                 if (ch switch
                 {
-                    (> 'А' and < 'Я') or (> 'a' and < 'я') => true,
+                    (>= 'А' and <= 'Я') or (>= 'а' and <= 'я') => true,
                     _ => false
                 })
                     return true;
