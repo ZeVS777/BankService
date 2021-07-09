@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using SovComBankTest.Services.Models;
+using SovComBankTest.Utils;
 
 namespace SovComBankTest.Services.Abstractions
 {
@@ -35,14 +36,8 @@ namespace SovComBankTest.Services.Abstractions
 
         private static bool HasAnyCyrillicChar(ReadOnlySpan<char> message)
         {
-            //Можно и regex, но решил показать возможности языка
             foreach (var ch in message)
-                if (ch switch
-                {
-                    'Ё' or 'ё' => true,
-                    (>= 'А' and <= 'Я') or (>= 'а' and <= 'я') => true,
-                    _ => false
-                })
+                if (ch.IsCyrillicChar())
                     return true;
 
             return false;

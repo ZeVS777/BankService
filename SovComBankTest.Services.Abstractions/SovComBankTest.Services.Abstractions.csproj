@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SovComBankTest.Services.Models\SovComBankTest.Services.Models.csproj" />
+    <ProjectReference Include="..\SovComBankTest.Utils\SovComBankTest.Utils.csproj" />
   </ItemGroup>
 
 </Project>

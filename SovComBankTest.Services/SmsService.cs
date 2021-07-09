@@ -50,7 +50,8 @@ namespace SovComBankTest.Services
                 //то не будем отправлять ничего, пусть клиент сам решает, на какие телефоны отправить в приоритете.
                 if (inviteMessage.Phones.Length > remains)
                     return new SendResult(SendStatus.TooMany, remains);
-                
+
+                var message = Transliteration.CyrillicToLatin(inviteMessage.Message);
                 await Task.Delay(1000); //TODO: отправка СМС
 
                 // Если будет требование отсылать по одному и записи делать после каждой оправки, то можно и так.
@@ -58,7 +59,7 @@ namespace SovComBankTest.Services
 
                 var messageId =
                     await _repository.AddMessageAsync(new InviteMessageEntity(inviteMessage.ApiId,
-                        inviteMessage.Message));
+                        message));
 
                 var log = new InviteMessagesLogEntity(DateTimeOffset.Now, string.Empty, messageId);
                 
