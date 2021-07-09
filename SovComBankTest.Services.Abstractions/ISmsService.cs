@@ -39,6 +39,7 @@ namespace SovComBankTest.Services.Abstractions
             foreach (var ch in message)
                 if (ch switch
                 {
+                    'Ё' or 'ё' => true,
                     (>= 'А' and <= 'Я') or (>= 'а' and <= 'я') => true,
                     _ => false
                 })

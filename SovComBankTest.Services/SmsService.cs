@@ -18,11 +18,8 @@ namespace SovComBankTest.Services
         //Конечно же в продакшене должен быть Redis или иной кэш на основе ключ-значение
         private readonly IMemoryCache _memoryCache;
 
-        public SmsService(IInviteMessagesRepository repository, IMemoryCache memoryCache)
-        {
-            _repository = repository;
-            _memoryCache = memoryCache;
-        }
+        public SmsService(IInviteMessagesRepository repository, IMemoryCache memoryCache) =>
+            (_repository, _memoryCache) = (repository, memoryCache);
 
         public async Task<SendResult> SendAsync(InviteMessageModel inviteMessage)
         {
@@ -56,7 +53,7 @@ namespace SovComBankTest.Services
                 
                 await Task.Delay(1000); //TODO: отправка СМС
 
-                // Если будет требование отсылать поо одному и записи делать после каждой оправки, то можно и так.
+                // Если будет требование отсылать по одному и записи делать после каждой оправки, то можно и так.
                 // Я же принимаю тот факт, что у нас 100% гарантия отправки смс по всем номерам
 
                 var messageId =
