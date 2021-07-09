@@ -15,19 +15,18 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SovComBankTest.ApiWebApp
 {
-    internal class Startup
+    internal sealed class Startup
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services) =>
-            services
-                .AddSmsService(options => Configuration.GetSection("SmsService").Bind(options))
-                .AddVersionedApiExplorer(ConfigureApiExplorerOptions)
-                .AddApiVersioning(ConfigureApiVersionOptions)
-                .AddSwaggerGen(ConfigureSwaggerGenOptions)
-                .AddControllers(ConfigureMvcOptions).ConfigureApiBehaviorOptions(ConfigureApiBehaviorOptions);
+        public void ConfigureServices(IServiceCollection services) => services
+            .AddSmsService(options => Configuration.GetSection("SmsService").Bind(options))
+            .AddVersionedApiExplorer(ConfigureApiExplorerOptions)
+            .AddApiVersioning(ConfigureApiVersionOptions)
+            .AddSwaggerGen(ConfigureSwaggerGenOptions)
+            .AddControllers(ConfigureMvcOptions).ConfigureApiBehaviorOptions(ConfigureApiBehaviorOptions);
 
         public void Configure(IApplicationBuilder app) => app
             .UseHttpsRedirection()
@@ -129,26 +128,5 @@ namespace SovComBankTest.ApiWebApp
         {
             options.Filters.Add(new ProducesResponseTypeAttribute(typeof(ApiResult<ErrorFeatures>), StatusCodes.Status500InternalServerError));
         };
-    }
-
-    /// <summary>
-    ///     Конфигурация версионности API
-    /// </summary>
-    internal class VersionConfig
-    {
-        /// <summary>
-        ///     Параметр в запросе или заголовке, ответственный за назначение версии запрашиваемого API
-        /// </summary>
-        public const string ApiVersionParameterName = "api-version";
-
-        /// <summary>
-        ///     Версия API по умолчанию
-        /// </summary>
-        public static readonly ApiVersion DefaultApiVersion = new(1, 0);
-
-        /// <summary>
-        ///     Активные версии АПИ
-        /// </summary>
-        public static readonly string[] ExistingVersions = {"1.0"};
     }
 }

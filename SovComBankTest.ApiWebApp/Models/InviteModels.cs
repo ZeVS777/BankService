@@ -6,7 +6,7 @@ namespace SovComBankTest.ApiWebApp.Models
     /// <summary>
     ///     Запрос с номерами телефонов и сообщением указанным адресатам
     /// </summary>
-    public class InviteMessage
+    public sealed class InviteMessage
     {
         /// <summary>
         ///     Список уникальных номеров
@@ -28,7 +28,7 @@ namespace SovComBankTest.ApiWebApp.Models
     }
 
 
-    internal class InviteMessageValidationAttribute: ValidationAttribute
+    internal sealed class InviteMessageValidationAttribute: ValidationAttribute
     {
         public override bool IsValid(object? value)
         {

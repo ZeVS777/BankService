@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,13 +27,14 @@ namespace SovComBankTest.ApiWebApp.Models
     ///     Результат запроса API с данными.
     /// </summary>
     /// <typeparam name="T">Тип данных результата.</typeparam>
-    internal class ApiResult<T>: ApiResult
+    internal sealed class ApiResult<T>: ApiResult
     {
         public ApiResult(T data, string? message = null): base(message) => Data = data;
 
         /// <summary>
         ///     Данные ответа
         /// </summary>
+        [Required]
         public T Data { get; }
     }
 
@@ -40,7 +42,7 @@ namespace SovComBankTest.ApiWebApp.Models
     /// <summary>
     ///     Описание ошибки.
     /// </summary>
-    internal class ErrorFeatures
+    internal sealed class ErrorFeatures
     {
         public ErrorFeatures(Exception exception, string path) => (ExceptionMessage, Path) = (exception.ToString(), path);
 
@@ -58,7 +60,7 @@ namespace SovComBankTest.ApiWebApp.Models
     /// <summary>
     ///     Ошибки валидации.
     /// </summary>
-    internal class ValidationError
+    internal sealed class ValidationError
     {
         public ValidationError(string field, string message) =>
             (Field, Message) = (field != string.Empty ? field : null, message);

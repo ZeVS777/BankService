@@ -1,6 +1,6 @@
 ﻿namespace SovComBankTest.Services.Models
 {
-    public class InviteMessageValidationErrorMessages
+    public static class InviteMessageValidationErrorMessages
     {
         public const string MessageAbsent = "Invite message is missing";
         public const string NotValidMessageFormat =

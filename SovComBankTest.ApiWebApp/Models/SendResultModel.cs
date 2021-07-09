@@ -3,7 +3,7 @@
     /// <summary>
     ///     Результат отправки
     /// </summary>
-    public class SendResultModel
+    internal sealed class SendResultModel
     {
         /// <summary>
         ///     Количество оставшихся сообщений

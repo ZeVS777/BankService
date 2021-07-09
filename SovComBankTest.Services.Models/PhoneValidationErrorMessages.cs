@@ -1,6 +1,6 @@
 ﻿namespace SovComBankTest.Services.Models
 {
-    public class PhoneValidationErrorMessages
+    public static class PhoneValidationErrorMessages
     {
         public const string TooMuchPhoneNumbersPerDay =
             "Too much phone numbers, should be less or equal to 128 per day";
