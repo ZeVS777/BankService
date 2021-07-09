@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using SovComBankTest.Services.Abstractions;
+using SovComBankTest.Services.Models;
 
 namespace SovComBankTest.ApiWebApp.Models
 {
@@ -12,18 +13,21 @@ namespace SovComBankTest.ApiWebApp.Models
         ///     Список уникальных номеров
         /// </summary>
         /// <example>["79998887766", "75554443322"]</example>
-        public string[]? Phones { get; init; }
+        [Required(ErrorMessage = PhoneValidationErrorMessages.PhoneNumbersAbsent)]
+        public string[] Phones { get; init; } = default!;
 
         /// <summary>
         ///     Сообщение в формате GSM для отправки указанным адресатам
         /// </summary>
         /// <example>Hello</example>
-        public string? Message { get; init; }
+        [Required(ErrorMessage = InviteMessageValidationErrorMessages.MessageAbsent, AllowEmptyStrings = false)]
+        public string Message { get; init; } = default!;
 
         /// <summary>
         ///     Идентификатор АПИ
         /// </summary>
         /// <example>4</example>
+        [Required(ErrorMessage = "Provide ApiId")]
         public int? ApiId { get; set; }
     }
 

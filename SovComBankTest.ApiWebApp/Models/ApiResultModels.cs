@@ -49,11 +49,13 @@ namespace SovComBankTest.ApiWebApp.Models
         /// <summary>
         ///     Ошибка.
         /// </summary>
+        [Required]
         public string ExceptionMessage { get; }
 
         /// <summary>
         ///     Путь запроса, который привёл к ошибке.
         /// </summary>
+        [Required]
         public string Path { get; }
     }
 
@@ -76,6 +78,7 @@ namespace SovComBankTest.ApiWebApp.Models
         ///     Текст ошибки.
         /// </summary>
         /// <example>Требуется поле</example>
+        [Required]
         public string Message { get; }
 
         public static IEnumerable<ValidationError> GetValidationErrors(ActionContext context)

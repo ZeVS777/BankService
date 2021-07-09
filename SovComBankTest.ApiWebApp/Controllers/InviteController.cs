@@ -38,23 +38,18 @@ namespace SovComBankTest.ApiWebApp.Controllers
         /// <returns>Результат запроса.</returns>
         /// <response code="200">Успешный результат.</response>
         /// <response code="400">Неверный запрос.</response>
-        /// <response code="401">Не предоставлен ApiId.</response>
         /// <response code="403">Предоставленному ApiId не разрешено выполнить данный запрос.</response>
         /// <response code="429">Слишком много запросов.</response>
-        [Produces(typeof(ApiResult<SendResult>))]
+        [Produces(typeof(ApiResult<SendResultModel>))]
         [ProducesResponseType(400, Type = typeof(ApiResult<IEnumerable<ValidationError>>))]
-        [ProducesResponseType(401, Type = typeof(ApiResult))]
         [ProducesResponseType(403, Type = typeof(ApiResult))]
         [ProducesResponseType(429, Type = typeof(ApiResult))]
         [HttpPost("send")]
         public async Task<ActionResult> Send(
             [FromServices] ISmsService smsService,
-            [Required(ErrorMessage = "Unknown Format.")][InviteMessageValidation] InviteMessage message)
+            [Required(ErrorMessage = "Unknown format.")][InviteMessageValidation] InviteMessage message)
         {
-            if (message.ApiId == null) return StatusCode(StatusCodes.Status401Unauthorized, new ApiResult("Provide ApiId."));
-            
-            Debug.Assert(message.Phones != null);
-            Debug.Assert(message.Message != null);
+            Debug.Assert(message.ApiId.HasValue);
 
             var (status, remains) = await smsService.SendAsync(new InviteMessageModel(message.Phones, message.Message, message.ApiId.Value));
 
