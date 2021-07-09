@@ -12,7 +12,7 @@ namespace SovComBankTest.ModuleTests
 
             var result = Transliteration.CyrillicToLatin(check);
 
-            Assert.Equal("Ei, zhlob! Gde tuz? Priach' iunyikh s'iomshchits v shkaf.", result);
+            Assert.Equal("Ei, zhlob! Gde tuz? Priach' iunykh s'emshchits v shkaf.", result);
         }
     }
 }

@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SovComBankTest.Services.Abstractions\SovComBankTest.Services.Abstractions.csproj" />
-    <ProjectReference Include="..\SovComBankTest.Utils\SovComBankTest.Utils.csproj" />
   </ItemGroup>
 
 </Project>

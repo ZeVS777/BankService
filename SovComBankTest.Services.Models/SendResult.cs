@@ -1,4 +1,4 @@
 ﻿namespace SovComBankTest.Services.Models
 {
-    public sealed record SendResult(SendStatus Status, int MessagesRemains);
+    public sealed record SendResult(SendStatus Status, int MessagesRemains, string? Message);
 }

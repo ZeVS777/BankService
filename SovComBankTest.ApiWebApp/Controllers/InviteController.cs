@@ -51,11 +51,11 @@ namespace SovComBankTest.ApiWebApp.Controllers
         {
             Debug.Assert(message.ApiId.HasValue);
 
-            var (status, remains) = await smsService.SendAsync(new InviteMessageModel(message.Phones, message.Message, message.ApiId.Value));
+            var (status, remains, sentMessage) = await smsService.SendAsync(new InviteMessageModel(message.Phones, message.Message, message.ApiId.Value));
 
             return status switch
             {
-                SendStatus.Ok => Ok(new ApiResult<SendResultModel>(new SendResultModel{Remains = remains})),
+                SendStatus.Ok => Ok(new ApiResult<SendResultModel>(new SendResultModel(remains, sentMessage!))),
                 SendStatus.TooMany when remains == 0 => StatusCode(StatusCodes.Status429TooManyRequests),
                 SendStatus.TooMany => NotEnoughRemains(remains),
                 SendStatus.Forbidden => StatusCode(StatusCodes.Status403Forbidden),
