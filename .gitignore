@@ -4,3 +4,4 @@
 **/obj
 **/wwwroot/*.xml
 **/*.DotSettings.user
+.idea
