@@ -19,7 +19,7 @@ namespace SovComBankTest.ApiWebApp
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) => services
             .AddSmsService(options => Configuration.GetSection("SmsService").Bind(options))
@@ -40,7 +40,7 @@ namespace SovComBankTest.ApiWebApp
                         new()
                         {
                             Url = $"{httpReq.Scheme}://{httpReq.Host.Value}",
-                            Description = "Основной сервер"
+                            Description = "Main Server"
                         }
                     };
                 });
@@ -55,7 +55,7 @@ namespace SovComBankTest.ApiWebApp
 
                 setup.RoutePrefix = "help";
                 setup.EnableValidator();
-                setup.DocumentTitle = "Web-сервис для отправки текстового приглашения в виде SMS-сообщения со ссылкой для установки приложения на телефоны незарегистрированных пользователей Системы.";
+                setup.DocumentTitle = "SMS Invite Message Publish Web-Service.";
             })
             .UseExceptionHandler("/error")
             .UseStatusCodePagesWithReExecute("/error/{0}")
@@ -69,7 +69,6 @@ namespace SovComBankTest.ApiWebApp
         {
             options.SuppressMapClientErrors = true;
             options.InvalidModelStateResponseFactory = context => new BadRequestObjectResult(
-                //Здесь мы можем оценить context и на основе конкретной ошибки предоставить код, если требуется
                 new ApiResult<IEnumerable<ValidationError>>(ValidationError.GetValidationErrors(context),
                     "Bad Request"));
         };
@@ -95,29 +94,29 @@ namespace SovComBankTest.ApiWebApp
         {
             swaggerGenOptions.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "api.xml"), true);
             
-            AddSwaggerApiVersionDocs(swaggerGenOptions);
+            AddSwaggerApiVersionDocs();
             swaggerGenOptions.UseAllOfToExtendReferenceSchemas();
 
 
-            void AddSwaggerApiVersionDocs(SwaggerGenOptions swaggerGenOptions)
+            void AddSwaggerApiVersionDocs()
             {
                 foreach (var existingVersion in VersionConfig.ExistingVersions)
                 {
                     swaggerGenOptions.SwaggerDoc(existingVersion, new OpenApiInfo
                     {
-                        Title = "Web-сервис для отправки текстового приглашения.",
+                        Title = "SMS Send Web-Service.",
                         Version = existingVersion,
                         Contact = new OpenApiContact
                         {
                             Url = new Uri("https://sovcombank.ru/"),
-                            Name = "Совкомбанк",
+                            Name = "Sovcombank",
                             Email = "help@example.com"
                         },
-                        Description = "Web-сервис для отправки текстового приглашения в виде SMS-сообщения со ссылкой для установки приложения на телефоны незарегистрированных пользователей Системы.",
+                        Description = "SMS Invite Message Publish Web-Service.",
                         License = new OpenApiLicense
                         {
                             Url = new Uri("https://ru.wikipedia.org/wiki/%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F_MIT"),
-                            Name = "Лицензия"
+                            Name = "GSM Format"
                         }
                     });
                 }
