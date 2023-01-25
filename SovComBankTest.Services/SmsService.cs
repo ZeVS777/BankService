@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AsyncKeyedLock;
 using Microsoft.Extensions.Caching.Memory;
 using SovComBankTest.Entities;
 using SovComBankTest.Repositories.Abstractions;
@@ -12,7 +13,7 @@ namespace SovComBankTest.Services
 {
     public sealed class SmsService: ISmsService
     {
-        private static readonly AsyncDuplicateLock Awaiter = new();
+        private static readonly AsyncKeyedLocker<int> Awaiter = new();
         private readonly IInviteMessagesRepository _repository;
 
         //Конечно же в продакшене должен быть Redis или иной кэш на основе ключ-значение
