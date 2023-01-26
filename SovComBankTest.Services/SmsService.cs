@@ -1,18 +1,23 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AsyncKeyedLock;
 using Microsoft.Extensions.Caching.Memory;
 using SovComBankTest.Entities;
 using SovComBankTest.Repositories.Abstractions;
 using SovComBankTest.Services.Abstractions;
 using SovComBankTest.Services.Models;
 using SovComBankTest.Utils;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SovComBankTest.Services
 {
     public sealed class SmsService: ISmsService
     {
-        private static readonly AsyncDuplicateLock Awaiter = new();
+        private static readonly AsyncKeyedLocker<int> Awaiter = new(o =>
+        {
+            o.PoolSize = 20;
+            o.PoolInitialFill = 1;
+        });
         private readonly IInviteMessagesRepository _repository;
 
         //Конечно же в продакшене должен быть Redis или иной кэш на основе ключ-значение
@@ -30,7 +35,7 @@ namespace SovComBankTest.Services
             
             //приняв во внимание единственность ответственности сервиса,
             //решил не использовать транзакции в пользу блокировки всех запросов от конкретного ApiId
-            using (await Awaiter.LockAsync(inviteMessage.ApiId))
+            using (await Awaiter.LockAsync(inviteMessage.ApiId).ConfigureAwait(false))
             {
                 //Повторно проверяем. К этому моменту, могло быть отправлено последнее на сегодня разрешённое
                 if (_memoryCache.TryGetValue(inviteMessage.ApiId, out _))
