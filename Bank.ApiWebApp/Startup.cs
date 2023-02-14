@@ -108,8 +108,8 @@ namespace Bank.ApiWebApp
                         Version = existingVersion,
                         Contact = new OpenApiContact
                         {
-                            Url = new Uri("https://sovcombank.ru/"),
-                            Name = "Sovcombank",
+                            Url = new Uri("https://example.com/"),
+                            Name = "bank",
                             Email = "help@example.com"
                         },
                         Description = "SMS Invite Message Publish Web-Service.",

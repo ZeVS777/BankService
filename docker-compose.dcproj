@@ -6,7 +6,7 @@
     <ProjectGuid>b4bcf188-0916-4467-9e69-275aea8fda13</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>sovcombanktest.apiwebapp</DockerServiceName>
+    <DockerServiceName>bank.apiwebapp</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

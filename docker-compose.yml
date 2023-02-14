@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  sovcombanktest.apiwebapp:
-    image: ${DOCKER_REGISTRY-}sovcombanktestapiwebapp
+  bank.apiwebapp:
+    image: ${DOCKER_REGISTRY-}bankapiwebapp
     build:
       context: .
       dockerfile: Bank.ApiWebApp/Dockerfile
