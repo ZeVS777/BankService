@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY-}sovcombanktestapiwebapp
     build:
       context: .
-      dockerfile: SovComBankTest.ApiWebApp/Dockerfile
+      dockerfile: Bank.ApiWebApp/Dockerfile
     depends_on:
       - db
   db:

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<ProjectReference Include="..\Bank.Repositories.Abstractions\Bank.Repositories.Abstractions.csproj" />
+    <ProjectReference Include="..\Bank.Services.Models\Bank.Services.Models.csproj" />
+    <ProjectReference Include="..\Bank.Utils\Bank.Utils.csproj" />
+  </ItemGroup>
+
+</Project>
