@@ -18,4 +18,4 @@ jobs:
       - name: Build
         run: dotnet build Bank.ApiWebApp --configuration Release --no-restore
       - name: Test
-        run: dotnet test Bank.ModuleTests --no-restore --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+        run: dotnet test Bank.ModuleTests --no-restore --logger trx --results-directory "TestResults"
