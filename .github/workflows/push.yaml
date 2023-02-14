@@ -6,15 +6,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    strategy:
-      dotnet-version: '5.0.x'
         
     steps:
       - uses: actions/checkout@v3
-      - name: Setup .NET Core SDK ${{ dotnet-version }}
+      - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{ dotnet-version }}
+          dotnet-version: '5.0.x'
       - name: Install dependencies
         run: dotnet restore
       - name: Build
