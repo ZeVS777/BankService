@@ -1,0 +1,17 @@
+name: 'Test Report'
+on:
+  workflow_run:
+    workflows: ['dotnet package']
+    types:
+      - completed
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: phoenix-actions/test-reporting@v8
+      id: test-report
+      with:
+        artifact: test-results
+        name: Test Results
+        path: 'test-results.trx'
+        reporter: dotnet-trx
