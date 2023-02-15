@@ -20,9 +20,9 @@ jobs:
       - name: Test
         run: dotnet test Bank.ModuleTests --no-restore --logger:"trx;LogFileName=test-results.trx"
       - name: Upload dotnet test results
-          uses: actions/upload-artifact@v3
-          with:
-            name: test-results
-            path: test-results.trx
-          # Use always() to always run this step to publish test results when there are test failures
-          if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: test-results.trx
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
