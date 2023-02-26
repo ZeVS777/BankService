@@ -6,14 +6,14 @@ on:
       - '*'
       - '!master'
     paths:
-      - **.cs
-      - **.csproj
+      - '**.cs'
+      - '**.csproj'
   pull_request:
     branches:
       - master
     paths:
-      - **.cs
-      - **.csproj
+      - '**.cs'
+      - '**.csproj'
 
 jobs:
   build:
