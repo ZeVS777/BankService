@@ -11,6 +11,9 @@ on:
   pull_request:
     branches:
       - master
+    paths:
+      - **.cs
+      - **.csproj
 
 jobs:
   build:
