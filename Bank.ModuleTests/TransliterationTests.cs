@@ -1,18 +1,23 @@
 ﻿using Bank.Utils;
 using Xunit;
 
-namespace Bank.ModuleTests
+namespace Bank.ModuleTests;
+
+/// <summary>
+/// Тесты транслитерации
+/// </summary>
+public class TransliterationTests
 {
-    public class TransliterationTests
+    /// <summary>
+    /// Проверка транслитерации
+    /// </summary>
+    [Fact]
+    public void GivenTheCyrillicMessage_WhenTranslating_TranslationResultMustBeEqual()
     {
-        [Fact]
-        public void GivenTheCyrillicMessage_WhenTranslating_TranslationResultMustBeEqual()
-        {
-            var check = "Эй, жлоб! Где туз? Прячь юных съёмщиц в шкаф.";
+        const string check = "Эй, жлоб! Где туз? Прячь юных съёмщиц в шкаф.";
 
-            var result = Transliteration.CyrillicToLatin(check);
+        var result = Transliteration.CyrillicToLatin(check);
 
-            Assert.Equal("Ei, zhlob! Gde tuz? Priach' iunykh s'emshchits v shkaf.", result);
-        }
+        Assert.Equal("Ei, zhlob! Gde tuz? Priach' iunykh s'emshchits v shkaf.", result);
     }
 }

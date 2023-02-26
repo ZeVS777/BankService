@@ -1,9 +1,22 @@
-﻿namespace Bank.Services.Models
+﻿namespace Bank.Services.Models;
+
+/// <summary>
+/// Состояние отправки
+/// </summary>
+public enum SendStatus
 {
-    public enum SendStatus
-    {
-        Ok,
-        TooMany,
-        Forbidden
-    }
+    /// <summary>
+    /// Успешно
+    /// </summary>
+    Ok,
+
+    /// <summary>
+    /// Превышен лимит
+    /// </summary>
+    TooMany,
+
+    /// <summary>
+    /// Запрещено
+    /// </summary>
+    Forbidden
 }

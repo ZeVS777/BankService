@@ -1,25 +1,24 @@
-using Microsoft.AspNetCore.Mvc;
+п»їusing Microsoft.AspNetCore.Mvc;
 
-namespace Bank.ApiWebApp
+namespace Bank.ApiWebApp;
+
+/// <summary>
+/// РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ РІРµСЂСЃРёРѕРЅРЅРѕСЃС‚Рё API
+/// </summary>
+internal static class VersionConfig
 {
     /// <summary>
-    ///     Конфигурация версионности API
+    /// РџР°СЂР°РјРµС‚СЂ РІ Р·Р°РїСЂРѕСЃРµ РёР»Рё Р·Р°РіРѕР»РѕРІРєРµ, РѕС‚РІРµС‚СЃС‚РІРµРЅРЅС‹Р№ Р·Р° РЅР°Р·РЅР°С‡РµРЅРёРµ РІРµСЂСЃРёРё Р·Р°РїСЂР°С€РёРІР°РµРјРѕРіРѕ API
     /// </summary>
-    internal sealed class VersionConfig
-    {
-        /// <summary>
-        ///     Параметр в запросе или заголовке, ответственный за назначение версии запрашиваемого API
-        /// </summary>
-        public const string ApiVersionParameterName = "api-version";
+    public const string ApiVersionParameterName = "api-version";
 
-        /// <summary>
-        ///     Версия API по умолчанию
-        /// </summary>
-        public static readonly ApiVersion DefaultApiVersion = new(1, 0);
+    /// <summary>
+    /// Р’РµСЂСЃРёСЏ API РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+    /// </summary>
+    public static readonly ApiVersion DefaultApiVersion = new(1, 0);
 
-        /// <summary>
-        ///     Активные версии АПИ
-        /// </summary>
-        public static readonly string[] ExistingVersions = {"1.0"};
-    }
+    /// <summary>
+    /// РђРєС‚РёРІРЅС‹Рµ РІРµСЂСЃРёРё РђРџР
+    /// </summary>
+    public static readonly string[] ExistingVersions = { "1.0" };
 }

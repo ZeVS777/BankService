@@ -1,32 +1,31 @@
-﻿using System;
-using System.Data;
-using System.Threading.Tasks;
-using Dapper;
-using Dapper.Contrib.Extensions;
-using Bank.Entities;
-using Bank.Repositories.Abstractions;
+﻿namespace Bank.Repositories;
 
-namespace Bank.Repositories
+/// <inheritdoc />
+public sealed class InviteMessagesRepository : IInviteMessagesRepository
 {
-    public sealed class InviteMessagesRepository: IInviteMessagesRepository
+    private readonly IDbConnection _dbConnection;
+
+    /// <summary>
+    /// Создать экземпляр класса <see cref="InviteMessagesRepository"/>
+    /// </summary>
+    /// <param name="dbConnection">Соединение с БД</param>
+    public InviteMessagesRepository(IDbConnection dbConnection) => _dbConnection = dbConnection;
+
+    /// <inheritdoc />
+    public Task<int> GetMessagesCountAsync(int apiId, DateTimeOffset date)
     {
-        private readonly IDbConnection _dbConnection;
+        const string sql = $"""
+            select count(log.Id) from {InviteMessagesLogEntity.TableName} log
+            join {InviteMessageEntity.TableName} m on m.{nameof(InviteMessageEntity.Id)} = log.{nameof(InviteMessagesLogEntity.InviteMessageId)}
+            where m.{nameof(InviteMessageEntity.ApiId)} = @{nameof(apiId)} and log.{nameof(InviteMessagesLogEntity.SendDateTime)} >= @{nameof(date)}
+            """;
 
-        public InviteMessagesRepository(IDbConnection dbConnection) => _dbConnection = dbConnection;
-
-        public Task<int> GetMessagesCountAsync(int apiId, DateTimeOffset date)
-        {
-            var sql = string.Concat(
-                "select count(log.Id) from InviteMessagesLog log ",
-                $"join InviteMessage m on m.{nameof(InviteMessageEntity.Id)} = log.{nameof(InviteMessagesLogEntity.InviteMessageId)} ",
-                $"where m.{nameof(InviteMessageEntity.ApiId)} = @{nameof(apiId)} and log.{nameof(InviteMessagesLogEntity.SendDateTime)} >= @{nameof(date)}"
-            );
-
-            return _dbConnection.QuerySingleAsync<int>(sql, new {apiId, date});
-        }
-
-        public Task<int> AddMessageAsync(InviteMessageEntity inviteMessage) => _dbConnection.InsertAsync(inviteMessage);
-
-        public Task<int> AddMessageLogEntryAsync(InviteMessagesLogEntity[] log) => _dbConnection.InsertAsync(log);
+        return _dbConnection.QuerySingleAsync<int>(sql, new { apiId, date });
     }
+
+    /// <inheritdoc />
+    public Task<int> AddMessageAsync(InviteMessageEntity inviteMessage) => _dbConnection.InsertAsync(inviteMessage);
+
+    /// <inheritdoc />
+    public Task<int> AddMessageLogEntryAsync(InviteMessagesLogEntity[] log) => _dbConnection.InsertAsync(log);
 }

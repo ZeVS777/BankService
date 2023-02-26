@@ -3,12 +3,17 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\Bank.Repositories.Abstractions\Bank.Repositories.Abstractions.csproj" />
-    <ProjectReference Include="..\Bank.Services.Models\Bank.Services.Models.csproj" />
-    <ProjectReference Include="..\Bank.Utils\Bank.Utils.csproj" />
+    <Using Include="Bank.Services.Models"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bank.Services.Models\Bank.Services.Models.csproj"/>
+    <ProjectReference Include="..\Bank.Utils\Bank.Utils.csproj"/>
   </ItemGroup>
 
 </Project>

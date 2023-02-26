@@ -1,6 +1,9 @@
-﻿namespace Bank.Services.Models
-{
-    public sealed record InviteMessageModel(string[] Phones, string Message, int ApiId);
+﻿namespace Bank.Services.Models;
 
-    public sealed record SingleInviteMessageModel(string Phone, string Message);
-}
+/// <summary>
+/// Модель сообщения
+/// </summary>
+/// <param name="Phones">Номер телефона, для которого предназначено сообщение</param>
+/// <param name="Message">Текст сообщения</param>
+/// <param name="ApiId">Идентификатор сообщения</param>
+public sealed record InviteMessageModel(string[] Phones, string Message, int ApiId);

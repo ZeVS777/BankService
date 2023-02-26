@@ -1,27 +1,27 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Bank.ApiWebApp.Models
+namespace Bank.ApiWebApp.Models;
+
+/// <summary>
+/// Результат отправки
+/// </summary>
+internal sealed class SendResultModel
 {
     /// <summary>
-    ///     Результат отправки
+    /// Создать экземпляр класса <see cref="SendResultModel"/>
     /// </summary>
-    internal sealed class SendResultModel
-    {
-        public SendResultModel(int remains, string sentMessage)
-        {
-            Remains = remains;
-            SentMessage = sentMessage;
-        }
+    /// <param name="remains">Количество оставшихся возможных отправок сообщений</param>
+    /// <param name="sentMessage">Сообщение, которое было отправлено</param>
+    public SendResultModel(int remains, string sentMessage) => (Remains, SentMessage) = (remains, sentMessage);
 
-        /// <summary>
-        ///     Количество оставшихся сообщений
-        /// </summary>
-        public int Remains { get; init; }
-        
-        /// <summary>
-        ///     Сообщение, которое было отправлено
-        /// </summary>
-        [Required]
-        public string SentMessage { get; init; }
-    }
+    /// <summary>
+    /// Количество оставшихся возможных отправок сообщений
+    /// </summary>
+    public int Remains { get; }
+
+    /// <summary>
+    /// Сообщение, которое было отправлено
+    /// </summary>
+    [Required]
+    public string SentMessage { get; }
 }
