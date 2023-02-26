@@ -3,24 +3,25 @@
 namespace Bank.ApiWebApp.Models;
 
 /// <summary>
-///     Результат отправки
+/// Результат отправки
 /// </summary>
 internal sealed class SendResultModel
 {
-    public SendResultModel(int remains, string sentMessage)
-    {
-        Remains = remains;
-        SentMessage = sentMessage;
-    }
-
     /// <summary>
-    ///     Количество оставшихся сообщений
+    /// Создать экземпляр класса <see cref="SendResultModel"/>
     /// </summary>
-    public int Remains { get; init; }
+    /// <param name="remains">Количество оставшихся возможных отправок сообщений</param>
+    /// <param name="sentMessage">Сообщение, которое было отправлено</param>
+    public SendResultModel(int remains, string sentMessage) => (Remains, SentMessage) = (remains, sentMessage);
 
     /// <summary>
-    ///     Сообщение, которое было отправлено
+    /// Количество оставшихся возможных отправок сообщений
+    /// </summary>
+    public int Remains { get; }
+
+    /// <summary>
+    /// Сообщение, которое было отправлено
     /// </summary>
     [Required]
-    public string SentMessage { get; init; }
+    public string SentMessage { get; }
 }

@@ -8,7 +8,8 @@
 /// <param name="InviteMessageId">Идентификатор отправленного сообщения</param>
 /// <param name="Id">Идентификатор записи</param>
 [Table(TableName)]
-public sealed record InviteMessagesLogEntity(DateTimeOffset SendDateTime, string Phone, int InviteMessageId, [property: Key] int Id = 0)
+public sealed record InviteMessagesLogEntity(DateTimeOffset SendDateTime, string Phone, int InviteMessageId,
+    [property: Key] int Id = 0)
 {
     /// <summary>
     /// Название таблицы сущности
@@ -16,8 +17,9 @@ public sealed record InviteMessagesLogEntity(DateTimeOffset SendDateTime, string
     public const string TableName = "InviteMessagesLog";
 
     /// <inheritdoc />
-    public override int GetHashCode() => Id;
+    public bool Equals(InviteMessagesLogEntity? other) =>
+        other != null && EqualityContract == other.EqualityContract && Id == other.Id;
 
     /// <inheritdoc />
-    public bool Equals(InviteMessagesLogEntity? other) => other != null && EqualityContract == other.EqualityContract && Id == other.Id;
+    public override int GetHashCode() => Id;
 }

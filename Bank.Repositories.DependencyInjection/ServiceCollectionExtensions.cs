@@ -13,11 +13,14 @@ public static class ServiceCollectionExtensions
     /// <param name="services">Список зарегистрированных сервисов</param>
     /// <param name="options">Настройки</param>
     /// <returns>Список зарегистрированных сервисов</returns>
-    public static IServiceCollection AddSmsRepositories(this IServiceCollection services, Action<InviteMessagesRepositoryOptions> options)
+    public static IServiceCollection AddSmsRepositories(this IServiceCollection services,
+        Action<InviteMessagesRepositoryOptions> options)
     {
         services
             .Configure(options)
-            .AddScoped<IDbConnection, SqlConnection>(provider => new SqlConnection(provider.GetRequiredService<IOptions<InviteMessagesRepositoryOptions>>().Value.ConnectionString))
+            .AddScoped<IDbConnection, SqlConnection>(provider =>
+                new SqlConnection(provider.GetRequiredService<IOptions<InviteMessagesRepositoryOptions>>().Value
+                    .ConnectionString))
             .AddScoped<IInviteMessagesRepository, InviteMessagesRepository>();
 
         InitialDbMigration(services);

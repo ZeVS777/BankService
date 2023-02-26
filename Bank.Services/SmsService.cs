@@ -14,10 +14,10 @@ public sealed class SmsService : ISmsService
         o.PoolSize = 20;
         o.PoolInitialFill = 1;
     });
-    private readonly IInviteMessagesRepository _repository;
 
     //Конечно же в продакшене должен быть Redis или иной кэш на основе ключ-значение
     private readonly IMemoryCache _memoryCache;
+    private readonly IInviteMessagesRepository _repository;
 
     /// <summary>
     /// Создать экземпляр класса <see cref="SmsService"/>
@@ -30,7 +30,8 @@ public sealed class SmsService : ISmsService
     /// <inheritdoc />
     public async Task<SendResult> SendAsync(InviteMessageModel inviteMessage)
     {
-        if (inviteMessage.ApiId != 4) return new SendResult(SendStatus.Forbidden, 0, null);
+        if (inviteMessage.ApiId != 4)
+            return new SendResult(SendStatus.Forbidden, 0, null);
 
         if (_memoryCache.TryGetValue(inviteMessage.ApiId, out _))
             return new SendResult(SendStatus.TooMany, 0, null);
@@ -70,10 +71,12 @@ public sealed class SmsService : ISmsService
 
             var log = new InviteMessagesLogEntity(DateTimeOffset.Now, string.Empty, messageId);
 
-            await _repository.AddMessageLogEntryAsync(inviteMessage.Phones.Select(phone => log with { Phone = phone }).ToArray());
+            await _repository.AddMessageLogEntryAsync(inviteMessage.Phones.Select(phone => log with { Phone = phone })
+                .ToArray());
 
             remains -= inviteMessage.Phones.Length;
-            if (remains == 0) _memoryCache.Set(inviteMessage.ApiId, true, DateTime.Today.AddDays(1).AddTicks(-1));
+            if (remains == 0)
+                _memoryCache.Set(inviteMessage.ApiId, true, DateTime.Today.AddDays(1).AddTicks(-1));
 
             return new SendResult(SendStatus.Ok, remains, message);
         }

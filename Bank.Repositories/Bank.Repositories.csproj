@@ -8,19 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="Dapper" />
-    <Using Include="Dapper.Contrib.Extensions" />
-    <Using Include="System.Data" />
-    <Using Include="Bank.Repositories.Abstractions" />
-    <Using Include="Bank.Entities" />
+    <Using Include="Dapper"/>
+    <Using Include="Dapper.Contrib.Extensions"/>
+    <Using Include="System.Data"/>
+    <Using Include="Bank.Repositories.Abstractions"/>
+    <Using Include="Bank.Entities"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.78"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bank.Repositories.Abstractions\Bank.Repositories.Abstractions.csproj" />
+    <ProjectReference Include="..\Bank.Repositories.Abstractions\Bank.Repositories.Abstractions.csproj"/>
   </ItemGroup>
 
 </Project>

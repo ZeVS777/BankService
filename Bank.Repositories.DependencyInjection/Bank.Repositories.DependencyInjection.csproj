@@ -8,22 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="Dapper" />
-    <Using Include="System.Data" />
-    <Using Include="Bank.Repositories.Abstractions" />
-    <Using Include="Microsoft.Extensions.DependencyInjection" />
-    <Using Include="Microsoft.Extensions.Options" />
+    <Using Include="Dapper"/>
+    <Using Include="System.Data"/>
+    <Using Include="Bank.Repositories.Abstractions"/>
+    <Using Include="Microsoft.Extensions.DependencyInjection"/>
+    <Using Include="Microsoft.Extensions.Options"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.78"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1"/>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5"/>
   </ItemGroup>
-	
+
   <ItemGroup>
-    <ProjectReference Include="..\Bank.Repositories\Bank.Repositories.csproj" />
+    <ProjectReference Include="..\Bank.Repositories\Bank.Repositories.csproj"/>
   </ItemGroup>
 
 </Project>

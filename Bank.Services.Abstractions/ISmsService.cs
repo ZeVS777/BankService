@@ -16,6 +16,12 @@ public partial interface ISmsService
     /// </summary>
     public const int Threshold = 128;
 
+    private static readonly Regex SmsLegalCharactersRegex = new(
+        @"^[@£$¥èéùìòÇ\nØø\rÅå\fΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !""#¤%&'()*+,\-.\/0-9:;<=>?¡A-ZÄÖÑÜ§¿a-zäöñüà^{}\[~\]\|€А-Яа-яЁё]*$"
+        , RegexOptions.Compiled);
+
+    private static readonly Regex PhoneRegex = GetPhoneRegex();
+
     /// <summary>
     /// Отправить сообщение
     /// </summary>
@@ -23,11 +29,10 @@ public partial interface ISmsService
     /// <returns>Результат отправки</returns>
     public Task<SendResult> SendAsync(InviteMessageModel inviteMessage);
 
-    private static readonly Regex SmsLegalCharactersRegex = new(
-        @"^[@£$¥èéùìòÇ\nØø\rÅå\fΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !""#¤%&'()*+,\-.\/0-9:;<=>?¡A-ZÄÖÑÜ§¿a-zäöñüà^{}\[~\]\|€А-Яа-яЁё]*$"
-        , RegexOptions.Compiled);
-
-    private static bool CheckGsmChars(ReadOnlySpan<char> message) => SmsLegalCharactersRegex.IsMatch(message.ToString());
+    private static bool CheckGsmChars(ReadOnlySpan<char> message)
+    {
+        return SmsLegalCharactersRegex.IsMatch(message.ToString());
+    }
 
     /// <summary>
     /// Провести валидацию сообщения
@@ -46,8 +51,6 @@ public partial interface ISmsService
         }) == null;
 
     private static bool HasAnyCyrillicChar(string message) => message.Any(ch => ch.IsCyrillicChar());
-
-    private static readonly Regex PhoneRegex = GetPhoneRegex();
 
     /// <summary>
     /// Произвести валидацию номеров

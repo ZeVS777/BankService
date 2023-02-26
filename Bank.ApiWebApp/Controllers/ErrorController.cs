@@ -40,8 +40,9 @@ public class ErrorController : ControllerBase
         var routeWhereExceptionOccurred = exceptionFeature.Path;
         var exceptionThatOccurred = exceptionFeature.Error;
 
-        return StatusCode(StatusCodes.Status500InternalServerError, new ApiResult<ErrorFeatures>
-        (new ErrorFeatures(exceptionThatOccurred, routeWhereExceptionOccurred),
-            "Error."));
+        return StatusCode(
+            StatusCodes.Status500InternalServerError,
+            new ApiResult<ErrorFeatures>(new ErrorFeatures(exceptionThatOccurred, routeWhereExceptionOccurred), "Error.")
+        );
     }
 }

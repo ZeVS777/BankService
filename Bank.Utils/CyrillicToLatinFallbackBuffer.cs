@@ -8,12 +8,15 @@ namespace Bank.Utils;
 internal class CyrillicToLatinFallbackBuffer : EncoderFallbackBuffer
 {
     private readonly Dictionary<char, string> _table;
-    private int _bufferIndex;
     private string _buffer;
+    private int _bufferIndex;
     private int _leftToReturn;
 
     internal CyrillicToLatinFallbackBuffer(Dictionary<char, string> table) =>
         (_table, _bufferIndex, _leftToReturn) = (table, -1, -1);
+
+    /// <inheritdoc />
+    public override int Remaining => _leftToReturn;
 
     /// <inheritdoc />
     public override bool Fallback(char charUnknownHigh, char charUnknownLow, int index) => false;
@@ -21,11 +24,13 @@ internal class CyrillicToLatinFallbackBuffer : EncoderFallbackBuffer
     /// <inheritdoc />
     public override bool Fallback(char charUnknown, int index)
     {
-        if (!charUnknown.IsCyrillicChar()) return false;
+        if (!charUnknown.IsCyrillicChar())
+            return false;
 
         _buffer = _table[charUnknown];
         _leftToReturn = _buffer.Length - 1;
         _bufferIndex = -1;
+
         return true;
     }
 
@@ -37,19 +42,19 @@ internal class CyrillicToLatinFallbackBuffer : EncoderFallbackBuffer
 
         _leftToReturn--;
         _bufferIndex++;
+
         return _buffer[_bufferIndex];
     }
 
     /// <inheritdoc />
     public override bool MovePrevious()
     {
-        if (_bufferIndex <= 0) return false;
+        if (_bufferIndex <= 0)
+            return false;
 
         _bufferIndex--;
         _leftToReturn++;
+
         return true;
     }
-
-    /// <inheritdoc />
-    public override int Remaining => _leftToReturn;
 }

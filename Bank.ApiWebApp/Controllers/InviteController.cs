@@ -43,11 +43,12 @@ public class InviteController : ControllerBase
     [HttpPost("send")]
     public async Task<ActionResult> Send(
         [FromServices] ISmsService smsService,
-        [Required(ErrorMessage = "Unknown format.")][InviteMessageValidation] InviteMessage message)
+        [Required(ErrorMessage = "Unknown format."), InviteMessageValidation] InviteMessage message)
     {
         Debug.Assert(message.ApiId.HasValue);
 
-        var (status, remains, sentMessage) = await smsService.SendAsync(new InviteMessageModel(message.Phones, message.Message, message.ApiId.Value));
+        var (status, remains, sentMessage) =
+            await smsService.SendAsync(new InviteMessageModel(message.Phones, message.Message, message.ApiId.Value));
 
         return status switch
         {
@@ -55,7 +56,7 @@ public class InviteController : ControllerBase
             SendStatus.TooMany when remains == 0 => StatusCode(StatusCodes.Status429TooManyRequests),
             SendStatus.TooMany => NotEnoughRemains(remains),
             SendStatus.Forbidden => StatusCode(StatusCodes.Status403Forbidden),
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException("Unknown api status")
         };
     }
 
@@ -63,6 +64,7 @@ public class InviteController : ControllerBase
     {
         ModelState.AddModelError("message", PhoneValidationErrorMessages.TooMuchPhoneNumbersPerDay);
         ModelState.AddModelError("message", $"You have {remains} messages remains");
+
         return BadRequest(new ApiResult<IEnumerable<ValidationError>>(
             ValidationError.GetValidationErrors(ControllerContext), "Bad Request"));
     }

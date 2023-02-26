@@ -26,23 +26,11 @@ public class PhoneNumbersValidationTests
     [Fact]
     public void GivenTheMaxAmountOfPhoneNumbers_WhenChecking_ValidationMustBeSuccessful()
     {
-        var testData = new[] {
-            "70000000001",
-            "70000000002",
-            "70000000003",
-            "70000000004",
-            "70000000005",
-            "70000000006",
-            "70000000007",
-            "70000000008",
-            "70000000009",
-            "70000000010",
-            "70000000011",
-            "70000000012",
-            "70000000013",
-            "70000000014",
-            "70000000015",
-            "70000000016"
+        var testData = new[]
+        {
+            "70000000001", "70000000002", "70000000003", "70000000004", "70000000005", "70000000006", "70000000007",
+            "70000000008", "70000000009", "70000000010", "70000000011", "70000000012", "70000000013", "70000000014",
+            "70000000015", "70000000016"
         };
         var result = ISmsService.TryValidatePhones(testData, out _);
         Assert.True(result);
@@ -54,24 +42,11 @@ public class PhoneNumbersValidationTests
     [Fact]
     public void GivenTooMuchPhoneNumbers_WhenChecking_ValidationMustBeFailed()
     {
-        var testData = new[] {
-            "70000000001",
-            "70000000002",
-            "70000000003",
-            "70000000004",
-            "70000000005",
-            "70000000006",
-            "70000000007",
-            "70000000008",
-            "70000000009",
-            "70000000010",
-            "70000000011",
-            "70000000012",
-            "70000000013",
-            "70000000014",
-            "70000000015",
-            "70000000016",
-            "70000000017"
+        var testData = new[]
+        {
+            "70000000001", "70000000002", "70000000003", "70000000004", "70000000005", "70000000006", "70000000007",
+            "70000000008", "70000000009", "70000000010", "70000000011", "70000000012", "70000000013", "70000000014",
+            "70000000015", "70000000016", "70000000017"
         };
 
         var result = ISmsService.TryValidatePhones(testData, out var error);
@@ -106,10 +81,7 @@ public class PhoneNumbersValidationTests
     [Fact]
     public void GivenDuplicatePhoneNumbers_WhenChecking_ValidationMustBeFailed()
     {
-        var testData = new[] {
-            "70000000001",
-            "70000000001"
-        };
+        var testData = new[] { "70000000001", "70000000001" };
 
         var result = ISmsService.TryValidatePhones(testData, out var error);
         Assert.True(!result && string.Equals(error, PhoneValidationErrorMessages.DuplicatePhoneNumbers));

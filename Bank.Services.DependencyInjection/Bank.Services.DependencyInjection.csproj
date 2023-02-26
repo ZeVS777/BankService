@@ -8,19 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="Bank.Services.Abstractions" />
-    <Using Include="Bank.Repositories.DependencyInjection" />
-    <Using Include="Microsoft.Extensions.DependencyInjection" />
+    <Using Include="Bank.Services.Abstractions"/>
+    <Using Include="Bank.Repositories.DependencyInjection"/>
+    <Using Include="Microsoft.Extensions.DependencyInjection"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bank.Repositories.DependencyInjection\Bank.Repositories.DependencyInjection.csproj" />
-    <ProjectReference Include="..\Bank.Services\Bank.Services.csproj" />
+    <ProjectReference Include="..\Bank.Repositories.DependencyInjection\Bank.Repositories.DependencyInjection.csproj"/>
+    <ProjectReference Include="..\Bank.Services\Bank.Services.csproj"/>
   </ItemGroup>
 
 </Project>

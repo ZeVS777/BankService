@@ -13,8 +13,5 @@ public class HomeController : Controller
     /// </summary>
     /// <returns>Результат обработки запроса</returns>
     [Route("")]
-    public ActionResult Index()
-    {
-        return Redirect("/help");
-    }
+    public ActionResult Index() => Redirect("/help");
 }

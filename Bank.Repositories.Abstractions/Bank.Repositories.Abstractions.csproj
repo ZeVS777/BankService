@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="Bank.Entities" />
-    <Using Include="System.Data.Common" />
+    <Using Include="Bank.Entities"/>
+    <Using Include="System.Data.Common"/>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\Bank.Entities\Bank.Entities.csproj" />
+    <ProjectReference Include="..\Bank.Entities\Bank.Entities.csproj"/>
   </ItemGroup>
 
 </Project>

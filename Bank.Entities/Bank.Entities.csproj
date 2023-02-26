@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="Dapper.Contrib.Extensions" />
+    <Using Include="Dapper.Contrib.Extensions"/>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.78"/>
   </ItemGroup>
 
 </Project>

@@ -15,8 +15,9 @@ public sealed record InviteMessageEntity(int ApiId, string Message, [property: K
     public const string TableName = "InviteMessagesLog";
 
     /// <inheritdoc />
-    public override int GetHashCode() => Id;
+    public bool Equals(InviteMessageEntity? other) =>
+        other != null && EqualityContract == other.EqualityContract && Id == other.Id;
 
     /// <inheritdoc />
-    public bool Equals(InviteMessageEntity? other) => other != null && EqualityContract == other.EqualityContract && Id == other.Id;
+    public override int GetHashCode() => Id;
 }
