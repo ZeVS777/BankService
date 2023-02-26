@@ -2,9 +2,12 @@ name: dotnet package
 
 on:
   push:
+    branches:
+      - '*'
+      - '!master'
   pull_request:
     branches:
-    - master
+      - master
 
 jobs:
   build:
@@ -21,6 +24,8 @@ jobs:
         run: dotnet restore BankService.sln
       - name: Build
         run: dotnet build Bank.ApiWebApp --configuration Release --no-restore
+      - name: Cheeck format
+        run: dotnet format BankService.sln --verify-no-changes --no-restore -v d
       - name: Test
         run: dotnet test Bank.ModuleTests --no-restore --logger:trx --results-directory "TestResults"
       - name: Upload dotnet test results
