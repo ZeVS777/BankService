@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using Bank.Entities;
 
 namespace Bank.Repositories.DependencyInjection;
 
@@ -33,31 +34,31 @@ public static class ServiceCollectionExtensions
         using var sp = services.BuildServiceProvider();
         using var connection = sp.GetRequiredService<IDbConnection>();
 
-        connection.Execute("""
-        IF NOT EXISTS(SELECT * FROM sys.tables WHERE name = 'InviteMessage')
+        connection.Execute($"""
+        IF NOT EXISTS(SELECT * FROM sys.tables WHERE name = '{InviteMessageEntity.TableName}')
         BEGIN
-        	CREATE TABLE [dbo].[InviteMessage] (
-        		[Id] [int] IDENTITY(1,1) NOT NULL,
-        		[ApiId] [int] NOT NULL,
-        		[Message] [nvarchar](160) NOT NULL,
-        		CONSTRAINT [PK_InviteMessage] PRIMARY KEY CLUSTERED ([Id] ASC)
+        	CREATE TABLE [dbo].[{InviteMessageEntity.TableName}] (
+        		[{nameof(InviteMessageEntity.Id)}] [int] IDENTITY(1,1) NOT NULL,
+        		[{nameof(InviteMessageEntity.ApiId)}] [int] NOT NULL,
+        		[{nameof(InviteMessageEntity.Message)}] [nvarchar](160) NOT NULL,
+        		CONSTRAINT [PK_InviteMessage] PRIMARY KEY CLUSTERED ([{nameof(InviteMessageEntity.Id)}] ASC)
         	)
-        	CREATE NONCLUSTERED INDEX [IX_InviteMessage_ApiId] ON [dbo].[InviteMessage]	([ApiId] ASC)
+        	CREATE NONCLUSTERED INDEX [IX_InviteMessage_ApiId] ON [dbo].[{InviteMessageEntity.TableName}] ([{nameof(InviteMessageEntity.ApiId)}] ASC)
         
-        	CREATE TABLE [dbo].[InviteMessagesLog] (
-        		[Id] [int] IDENTITY(1,1) NOT NULL,
-        		[SendDateTime] [datetime] NOT NULL,
-        		[Phone] [char](11) NOT NULL,
-        		[InviteMessageId] [int] NOT NULL,
-        		CONSTRAINT [PK_InviteMessagesLog] PRIMARY KEY CLUSTERED ([Id] ASC)
+        	CREATE TABLE [dbo].[{InviteMessagesLogEntity.TableName}] (
+        		[{nameof(InviteMessagesLogEntity.Id)}] [int] IDENTITY(1,1) NOT NULL,
+        		[{nameof(InviteMessagesLogEntity.SendDateTime)}] [datetime] NOT NULL,
+        		[{nameof(InviteMessagesLogEntity.Phone)}] [char](11) NOT NULL,
+        		[{nameof(InviteMessagesLogEntity.InviteMessageId)}] [int] NOT NULL,
+        		CONSTRAINT [PK_InviteMessagesLog] PRIMARY KEY CLUSTERED ([{nameof(InviteMessagesLogEntity.Id)}] ASC)
         	)
-        	CREATE NONCLUSTERED INDEX [IX_InviteMessagesLog_SendDateTime] ON [dbo].[InviteMessagesLog] ([SendDateTime] DESC)
+        	CREATE NONCLUSTERED INDEX [IX_InviteMessagesLog_SendDateTime] ON [dbo].[{InviteMessagesLogEntity.TableName}] ([{nameof(InviteMessagesLogEntity.SendDateTime)}] DESC)
         
-        	ALTER TABLE [dbo].[InviteMessagesLog]  WITH CHECK ADD  
+        	ALTER TABLE [dbo].[{InviteMessagesLogEntity.TableName}] WITH CHECK ADD  
         	CONSTRAINT [FK_InviteMessagesLog_InviteMessage] 
-        	FOREIGN KEY([InviteMessageId]) REFERENCES [dbo].[InviteMessage] ([Id])
+        	FOREIGN KEY([{nameof(InviteMessagesLogEntity.InviteMessageId)}]) REFERENCES [dbo].[{InviteMessageEntity.TableName}] ([Id])
         
-        	ALTER TABLE [dbo].[InviteMessagesLog] CHECK CONSTRAINT [FK_InviteMessagesLog_InviteMessage]
+        	ALTER TABLE [dbo].[{InviteMessagesLogEntity.TableName}] CHECK CONSTRAINT [FK_InviteMessagesLog_InviteMessage]
         END
         """);
     }
