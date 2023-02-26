@@ -5,8 +5,9 @@
     <UserSecretsId>b4f7250b-ad2d-4261-8452-cb9bb0a070e9</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>wwwroot\api.xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 

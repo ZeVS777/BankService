@@ -35,7 +35,7 @@ public partial interface ISmsService
     /// <param name="message"></param>
     /// <param name="error"></param>
     /// <returns><see langword="true"/>, если ошибок не обнаружено, иначе <see langword="false"/></returns>
-    public static bool TryValidateMessage(string message, [NotNullWhen(false)] out string? error) =>
+    public static bool TryValidateMessage(string? message, [NotNullWhen(false)] out string? error) =>
         (error = message switch
         {
             null or "" => MessageAbsent,

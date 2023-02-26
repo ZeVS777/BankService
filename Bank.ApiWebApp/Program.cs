@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Bank.ApiWebApp;
+﻿using Bank.ApiWebApp;
 
 static IHostBuilder CreateHostBuilder(string[] args) =>
     Host
