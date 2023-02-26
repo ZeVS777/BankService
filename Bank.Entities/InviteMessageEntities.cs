@@ -12,7 +12,7 @@ public sealed record InviteMessageEntity(int ApiId, string Message, [property: K
     /// <summary>
     /// Название таблицы сущности
     /// </summary>
-    public const string TableName = "InviteMessagesLog";
+    public const string TableName = "InviteMessage";
 
     /// <inheritdoc />
     public bool Equals(InviteMessageEntity? other) =>

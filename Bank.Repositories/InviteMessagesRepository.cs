@@ -15,7 +15,7 @@ public sealed class InviteMessagesRepository : IInviteMessagesRepository
     public Task<int> GetMessagesCountAsync(int apiId, DateTimeOffset date)
     {
         const string sql = $"""
-            select count(log.Id) from {InviteMessagesLogEntity.TableName} log
+            select count(log.{nameof(InviteMessagesLogEntity.Id)}) from {InviteMessagesLogEntity.TableName} log
             join {InviteMessageEntity.TableName} m on m.{nameof(InviteMessageEntity.Id)} = log.{nameof(InviteMessagesLogEntity.InviteMessageId)}
             where m.{nameof(InviteMessageEntity.ApiId)} = @{nameof(apiId)} and log.{nameof(InviteMessagesLogEntity.SendDateTime)} >= @{nameof(date)}
             """;

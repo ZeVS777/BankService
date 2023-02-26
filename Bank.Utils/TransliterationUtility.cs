@@ -5,7 +5,7 @@ namespace Bank.Utils;
 /// <summary>
 /// Методы транслитерации
 /// </summary>
-public sealed class Transliteration
+public static class Transliteration
 {
     /// <summary>
     /// Преобразовать строку в латинские символы
