@@ -2,9 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <DocumentationFile>enable</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Using Include="Bank.Entities" />
+    <Using Include="System.Data.Common" />
+  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\Bank.Entities\Bank.Entities.csproj" />
   </ItemGroup>

@@ -1,21 +1,22 @@
-﻿using System;
-using Dapper.Contrib.Extensions;
+﻿namespace Bank.Entities;
 
-namespace Bank.Entities
+/// <summary>
+/// Запись сообщения в БД
+/// </summary>
+/// <param name="ApiId">Идентификатор приложения</param>
+/// <param name="Message">Сообщение</param>
+/// <param name="Id">Идентификатор записи</param>
+[Table(TableName)]
+public sealed record InviteMessageEntity(int ApiId, string Message, [property: Key] int Id = 0)
 {
-    [Table("InviteMessage")]
-    public sealed record InviteMessageEntity(int ApiId, string Message, [property: Key] int Id = 0)
-    {
-        public override int GetHashCode() => Id;
+    /// <summary>
+    /// Название таблицы сущности
+    /// </summary>
+    public const string TableName = "InviteMessagesLog";
 
-        public bool Equals(InviteMessageEntity? other) => other != null && EqualityContract == other.EqualityContract && Id == other.Id;
-    }
+    /// <inheritdoc />
+    public override int GetHashCode() => Id;
 
-    [Table("InviteMessagesLog")]
-    public sealed record InviteMessagesLogEntity(DateTimeOffset SendDateTime, string Phone, int InviteMessageId, [property: Key] int Id = 0)
-    {
-        public override int GetHashCode() => Id;
-
-        public bool Equals(InviteMessagesLogEntity? other) => other != null && EqualityContract == other.EqualityContract && Id == other.Id;
-    }
+    /// <inheritdoc />
+    public bool Equals(InviteMessageEntity? other) => other != null && EqualityContract == other.EqualityContract && Id == other.Id;
 }
