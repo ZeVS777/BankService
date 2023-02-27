@@ -29,10 +29,8 @@ public partial interface ISmsService
     /// <returns>Результат отправки</returns>
     public Task<SendResult> SendAsync(InviteMessageModel inviteMessage);
 
-    private static bool CheckGsmChars(ReadOnlySpan<char> message)
-    {
-        return SmsLegalCharactersRegex.IsMatch(message.ToString());
-    }
+    private static bool CheckGsmChars(ReadOnlySpan<char> message) =>
+        SmsLegalCharactersRegex.IsMatch(message.ToString());
 
     /// <summary>
     /// Провести валидацию сообщения
