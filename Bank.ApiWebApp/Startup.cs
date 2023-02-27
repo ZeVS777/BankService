@@ -80,18 +80,15 @@ internal sealed class Startup
             StatusCodes.Status500InternalServerError));
     };
 
-    public void ConfigureServices(IServiceCollection services)
-    {
+    public void ConfigureServices(IServiceCollection services) =>
         services
             .AddSmsService(options => Configuration.GetSection("SmsService").Bind(options))
             .AddVersionedApiExplorer(ConfigureApiExplorerOptions)
             .AddApiVersioning(ConfigureApiVersionOptions)
             .AddSwaggerGen(ConfigureSwaggerGenOptions)
             .AddControllers(ConfigureMvcOptions).ConfigureApiBehaviorOptions(ConfigureApiBehaviorOptions);
-    }
 
-    public void Configure(IApplicationBuilder app)
-    {
+    public void Configure(IApplicationBuilder app) =>
         app
             .UseHttpsRedirection()
             .UseStaticFiles()
@@ -124,5 +121,4 @@ internal sealed class Startup
             {
                 endpoints.MapControllers();
             });
-    }
 }
